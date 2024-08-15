@@ -1,0 +1,36 @@
+<form [formGroup]="form">
+  <div class="form-group">
+    <label for="firstNameInput">First Name</label>
+    <input type="text" class="form-control" formControlName="firstName"/>
+    <small class="text-danger" *ngIf="firstName?.touched && firstName?.errors?.['required']">
+      First Name is required!
+    </small>
+  </div>
+  <div class="form-group">
+    <label for="lastNameInput">Last Name</label>
+    <input type="text" class="form-control" formControlName="lastName" />
+    <small class="text-danger" *ngIf="lastName?.touched && lastName?.errors?.['required']">
+      Last Name is required!
+    </small>
+    <div class="form-group">
+      <label for="emailInput">Email address</label>
+      <input type="email" class="form-control" formControlName="email" />
+      <small class="text-danger" *ngIf="email?.touched && email?.errors?.['required,email']">
+        Email is required!
+      </small>
+    </div>
+    <div class="btn-wrapper">
+      <button *ngIf="!edit" class="btn btn-primary m-3" (click)="onEdit()">
+        Edit
+      </button>
+      <div *ngIf="edit">
+        <button class="btn btn-primary m-3" (click)="onCancel()">
+          Cancel
+        </button>
+        <button class="btn btn-primary" [disabled]="form.invalid" (click)="onOk()">
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

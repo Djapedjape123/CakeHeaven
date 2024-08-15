@@ -1,0 +1,30 @@
+<form [formGroup]="form">
+  <div class="form-group">
+    <label for="nameInput">Name</label>
+    <input type="text" class="form-control" formControlName="name" />
+    <small class="text-danger" *ngIf="name?.touched && name?.errors?.['required']">
+      Name is required!
+    </small>
+  </div>
+  <div class="form-group">
+    <label for="emailInput">Email address</label>
+    <input type="email" class="form-control" formControlName="email" />
+    <small class="text-danger" *ngIf="email?.touched && email?.errors?.['required,email']">
+      Email is required!
+    </small>
+  </div>
+  <div class="form-group">
+    <label for="messageInput">Message</label>
+    <div>
+      <textarea name="message" cols="30" rows="5" style="width: 100%" formControlName="message"></textarea>
+      <small class="text-danger" *ngIf="message?.touched && message?.errors?.['required']">
+        Message is required!
+      </small>
+    </div>
+  </div>
+  <div>
+    <button type="submit" class="btn btn-primary m-3" [disabled]="form.invalid" (click)="onSend()">
+      Send
+    </button>
+  </div>
+</form>
